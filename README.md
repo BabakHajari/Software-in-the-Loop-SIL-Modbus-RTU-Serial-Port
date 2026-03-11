@@ -1,229 +1,63 @@
-Software-In-the-Loop (SIL) Serial / Modbus Simulator
+ModbusSIL – Software-In-the-Loop (SIL) & Serial Port Calculator
 
+ModbusSIL is a Software-In-the-Loop (SIL) simulation and serial communication utility designed for PLC programmers and industrial automation engineers.
 
+It provides a practical environment for simulating devices connected through RS-232 / RS-485 serial ports, allowing developers to test communication logic and Modbus interactions without requiring physical hardware.
 
+The tool simplifies serial communication setup, Modbus message generation, CRC calculation, and response analysis—making it useful for testing, commissioning, troubleshooting, and industrial system simulation.
 
+Key Capabilities
 
+Simulate devices and respond to predefined serial commands (SIL)
 
+Automatically calculate and append Modbus RTU CRC
 
+Send commands and receive responses with configurable delay
 
-A Software-In-the-Loop (SIL) simulator for testing serial communication and Modbus RTU devices without requiring physical hardware.
+Real-time logging of transmitted and received data
 
-This tool is designed for PLC programmers, industrial automation engineers, and embedded system developers who need to simulate devices connected through RS-232 or RS-485 serial ports.
+Operate in Send, Receive, or Loop Simulation modes
 
-Repository
-https://github.com/BabakHajari/Software-in-the-Loop-SIL-Modbus-RTU-Serial-Port
+Integrated Engineering Calculators
 
-Overview
-
-During software development, access to the real hardware device may not always be possible.
-
-Common situations include:
-
-Hardware is not available in the development environment
-
-Equipment requires large space or high power
-
-Testing requires special environmental conditions
-
-Production systems cannot be interrupted
-
-The Software-In-the-Loop (SIL) approach solves this problem by simulating the behavior of the device through software.
-
-This allows developers to test:
-
-serial communication
-
-Modbus protocols
-
-control logic
-
-data processing
-
-without requiring the physical machine.
-
-Features
-Device Simulation
-
-Simulate devices connected through RS-232 / RS-485
-
-Automatically respond to predefined commands
-
-Configurable response delay
-
-Modbus Support
-
-Modbus RTU communication
-
-Automatic CRC checksum calculation
-
-Message simulation for external applications
-
-Serial Communication Tools
-
-COM port configuration
-
-Serial communication monitoring
-
-Hardware behavior simulation
-
-Data Conversion Utilities
+The software includes built-in utilities commonly needed when working with industrial protocols:
 
 Hex ↔ Decimal conversion
 
-Hex ↔ String conversion
+2-byte Hex to real value conversion using configurable min/max scaling
 
-IEEE floating-point conversion
+4-byte IEEE-754 Hex to floating-point value conversion
 
-Scaled hex value conversion using custom ranges
+Validation tools for sensors, transmitters, and data acquisition systems
 
-Architecture
+Configuration & Extensibility
 
-The simulator behaves like a virtual serial device.
+Message definitions stored in editable .ini configuration files
 
-Control Software
-        │
-        │ Serial Communication
-        ▼
-Software-In-the-Loop Simulator
-        │
-        │ Virtual Serial Port
-        ▼
-Simulated Device Response
-Installation
+Support for multiple predefined device messages
 
-Download the software from the repository
+Compatible with Modbus and non-checksum proprietary protocols
 
-ModbusConver.exe
-
-No installation is required.
-Simply run the executable.
-
-Quick Start
-1️⃣ Create Virtual Serial Ports
-
-Install a virtual serial port tool such as:
-
-Virtual Serial Port Driver Pro
-
-Create a connected pair of ports:
-
-COM1  <----->  COM2
-
-Example:
-
-Control software → COM1
-
-SIL simulator → COM2
-
-2️⃣ Configure the Simulator
-
-Select:
-
-COM Port
-
-Protocol (Modbus / No Checksum)
-
-Message definition
-
-3️⃣ Start Simulation
-
-Press:
-
-Receive
-
-The software will wait for incoming messages and respond automatically.
-
-Message Configuration
-
-Messages are defined in:
-
-MessageSIL.ini
-
-Each message uses two lines:
-
-1️⃣ Command received by the simulator
-2️⃣ Response returned by the simulator
-
-Format:
-
-HEX MESSAGE ; PROTOCOL ; DELAY ; DEVICE NAME ; REMARK
-
-Example:
-
-10 04 00 00 00 08;Modbus;30;ADAM4017;Advantech A/D Module
-
-Protocol options:
-
-Modbus → CRC added automatically
-
-No Checksum → message sent without CRC
-
-Up to 10 predefined messages plus one editable message can be used.
-
-Example Devices
-
-The package includes predefined messages for several Advantech modules:
+Example configurations included for Advantech ADAM modules:
 
 Device	Description
-ADAM-4017	Analog input module
-ADAM-4015	PT100 temperature sensors
-ADAM-4018	Thermocouple sensors
-Logging
+ADAM-4017	Voltage / Current Input Module
+ADAM-4015	PT100 Temperature Module
+ADAM-4018	Thermocouple Temperature Module
+Typical Applications
 
-All communication is stored in:
+PLC and SCADA development
 
-ModbusConverSIL.txt
+Industrial sensor and DAQ system testing
 
-The log includes:
+Modbus device commissioning and diagnostics
 
-timestamps
+Automation system simulation without physical hardware
 
-sent messages
+Engineering training and educational environments
 
-received responses
+Value Proposition
 
-CRC validation results
+ModbusSIL reduces development time and simplifies debugging by combining serial communication, Modbus analysis, engineering calculations, and data logging into a single lightweight application.
 
-Example:
-
-Send => 10 03 10 7F FF 80 02 ...
-Received => 10 04 00 00 00 08 F2 8D
-Data Conversion Tools
-
-The software includes several built-in utilities.
-
-Hex → Decimal
-
-Example:
-
-7F FF → 32767
-Hex → Real (IEEE Float)
-
-Example:
-
-42 D7 37 84 → 107.608429
-Scaled Hex Conversion
-
-Useful for sensor values such as:
-
-Range	Application
-−10 to +10	voltage
-4-20 mA	industrial sensors
-−50 to 150 °C	temperature sensors
-Hex ↔ String
-
-Example:
-
-23 31 30 0D → #10
-Developer
-
-Babak Hajari
-
-LinkedIn
-https://www.linkedin.com/in/babak-hajari-a20095105/
-
-GitHub
-https://github.com/BabakHajari
-
-Version 2.3.4
+It eliminates the need for multiple external tools and provides a practical environment for industrial communication testing and device simulation.
